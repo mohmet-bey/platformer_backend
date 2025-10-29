@@ -1,8 +1,8 @@
-from flask import Flask,  jsonify
+from flask import Flask,  jsonify ,requests
 from flask_cors import CORS
 import json
 import os
-import requests
+
 
 app = Flask(__name__)
 CORS(app,origins=["*"])
@@ -38,4 +38,5 @@ def leaderboard():
     scores = load_scores()
     return jsonify(scores)
 if __name__ == "__main__":
+    porti = int(os.environ.get("PORT",10000))
     app.run(host="0.0.0.0", port=10000)
