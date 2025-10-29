@@ -1,4 +1,4 @@
-from flask import Flask,  jsonify ,requests
+from flask import Flask,  jsonify ,request
 from flask_cors import CORS
 import json
 import os
@@ -23,7 +23,7 @@ def index():
     return "backend good"
 @app.route('/submit_score', methods=['POST'])
 def submit_score():
-    data = requests.get_json()
+    data = request.get_json()
     name = data.get('name')
     time = data.get('time')
 
