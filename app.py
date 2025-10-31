@@ -17,7 +17,7 @@ def load_scores() -> dict:
     
 def save_scores(scores) -> None:
     with open(SCORES_FILE,"w") as f:
-        json.dump(scores,"w")
+        json.dump(scores,f)
 @app.route("/")
 def index():
     return "backend good"
@@ -39,4 +39,4 @@ def leaderboard():
     return jsonify(scores)
 if __name__ == "__main__":
     porti = int(os.environ.get("PORT",10000))
-    app.run(host="0.0.0.0", port=10000)
+    app.run(host="0.0.0.0", port=porti)
