@@ -11,7 +11,7 @@ SCORES_FILE:str="scores.json"
 
 def load_scores() -> dict:
     if not os.path.exists(SCORES_FILE):
-        return {}
+        return {"guah":float("inf")}
     with open(SCORES_FILE,"r") as f:
         return json.load(f)
     
@@ -26,13 +26,17 @@ def submit_score():
     data = request.get_json()
     name = data.get('name')
     time = data.get('time')
+    updated = False
 
     scores = load_scores()
     if name not in scores or time < scores[name]:
         scores[name] = time
         save_scores(scores)
 
-    return jsonify({'status': 'success'})
+    return jsonify({'status': 'success',
+                    "updated":updated,
+                    "best_time":scores[name]
+                })
 @app.route('/leaderboard', methods=['GET'])
 def leaderboard():
     scores = load_scores()
