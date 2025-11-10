@@ -19,8 +19,8 @@ def save_scores(scores) -> None:
     with open(SCORES_FILE,"w") as f:
         json.dump(scores,f)
 @app.route("/")
-def index():
-    return "backend good"
+def health():
+    return "OK",200
 @app.route('/submit_score', methods=['POST'])
 def submit_score():
     data = request.get_json()
