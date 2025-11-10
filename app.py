@@ -29,14 +29,16 @@ def submit_score():
     updated = False
 
     scores = load_scores()
-    if name not in scores or time < scores[name]:
+    first_ever = scores.get(name,None) is None
+    if name not in scores or time < scores.get(name,999.0):
         scores[name] = time
         save_scores(scores)
+        updated = True
 
     return jsonify({'status': 'success',
                     "updated":updated,
-                    "best_time":scores[name]
-                })
+                    "best_time":scores[name],
+                    "first_ever":bool(first_ever)})
 @app.route('/leaderboard', methods=['GET'])
 def leaderboard():
     scores = load_scores()
