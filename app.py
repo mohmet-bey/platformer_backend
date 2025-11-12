@@ -2,7 +2,9 @@ from flask import Flask,  jsonify ,request
 from flask_cors import CORS
 import json
 import os
-
+#import requests
+import sys
+print("using interpreter: ", sys.executable)
 
 app = Flask(__name__)
 CORS(app,origins=["*"])
