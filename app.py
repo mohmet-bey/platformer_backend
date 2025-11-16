@@ -14,7 +14,7 @@ CORS(app,origins=["*"])
 SCORES_FILE:str="scores.json"
 
 def load_scores() -> dict:
-	url = f"{SUPABASE_URL}/rest/v1/leaderboard?select=username,score"
+	url = f"{SUPABASE_URL}/rest/v1/get_leaderboard"
 	headers = {
 		"apikey": SUPABASE_API_KEY,
 		"Authorization": f"Bearer {SUPABASE_API_KEY}"
