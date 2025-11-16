@@ -19,7 +19,7 @@ def load_scores() -> dict:
 		"apikey": SUPABASE_API_KEY,
 		"Authorization": f"Bearer {SUPABASE_API_KEY}"
 	}
-	response = requests.get(url, headers=headers)
+	response = requests.post(url, headers=headers)
 	data = response.json()
 	return {entry["username"]: entry["score"] for entry in data}
 
